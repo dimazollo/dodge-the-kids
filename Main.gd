@@ -19,6 +19,7 @@ func game_over():
 	# Music
 	$Music.stop()
 	$DeathSound.play()
+	$Meow.play()
 
 func new_game():
 	score = 0
