@@ -1,71 +1,59 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyj5sckrfqa5w"]
+[gd_scene load_steps=8 format=3 uid="uid://cyj5sckrfqa5w"]
 
 [ext_resource type="Script" path="res://Mob.gd" id="1_25ofn"]
-[ext_resource type="Texture2D" uid="uid://cen8sxq1n8y5k" path="res://art/enemyFlyingAlt_1.png" id="2_001n3"]
-[ext_resource type="Texture2D" uid="uid://cbd5hhd8bl1p7" path="res://art/enemyFlyingAlt_2.png" id="3_5mkem"]
-[ext_resource type="Texture2D" uid="uid://p8ua1dtexxqs" path="res://art/enemySwimming_1.png" id="4_l47l2"]
-[ext_resource type="Texture2D" uid="uid://c3jayww43amt4" path="res://art/enemySwimming_2.png" id="5_koyrk"]
-[ext_resource type="Texture2D" uid="uid://bohg5vie8otgg" path="res://art/enemyWalking_1.png" id="6_o2sou"]
-[ext_resource type="Texture2D" uid="uid://jbn4wsk1q0hf" path="res://art/enemyWalking_2.png" id="7_3qdvr"]
+[ext_resource type="Texture2D" uid="uid://b3318vu65j4s5" path="res://art/boy_helicopter-cap_1.png" id="2_5iapa"]
+[ext_resource type="Texture2D" uid="uid://07y4hjflhoq6" path="res://art/boy_helicopter-cap_2.png" id="3_xnpjd"]
+[ext_resource type="Texture2D" uid="uid://bcs1s1u8424k8" path="res://art/girl_purple1.png" id="4_dky5k"]
+[ext_resource type="Texture2D" uid="uid://6hulvcd1bnwe" path="res://art/girl_purple2.png" id="5_2p0jo"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sry2x"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ou3j1"]
+radius = 31.0
+height = 141.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71tyo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_001n3")
+"texture": ExtResource("2_5iapa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_5mkem")
+"texture": ExtResource("3_xnpjd")
 }],
 "loop": true,
-"name": &"fly",
+"name": &"boy",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_l47l2")
+"texture": ExtResource("4_dky5k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_koyrk")
+"texture": ExtResource("5_2p0jo")
 }],
 "loop": true,
-"name": &"swim",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_o2sou")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_3qdvr")
-}],
-"loop": true,
-"name": &"walk",
+"name": &"girl",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t61a2"]
-radius = 36.0
-height = 92.0
-
 [node name="Mob" type="RigidBody2D" groups=["mobs"]]
+position = Vector2(-1, -4)
 collision_mask = 0
 gravity_scale = 2.66454e-15
 script = ExtResource("1_25ofn")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.062499, 0)
-scale = Vector2(0.751147, 0.75)
-sprite_frames = SubResource("SpriteFrames_sry2x")
-animation = &"fly"
-frame = 1
-frame_progress = 0.639814
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_t61a2")
+position = Vector2(1, 4.5)
+shape = SubResource("CapsuleShape2D_ou3j1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.75, 3.46939)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_71tyo")
+animation = &"boy"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.5, 4.5)
+scale = Vector2(1.65, 2.55)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

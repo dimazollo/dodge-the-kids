@@ -36,13 +36,9 @@ func _process(delta):
 	position.y = clamp(position.y, 0, screen_size.y)
 	
 	if velocity.x != 0:
-		players_animated_sprite.animation = 'walk'
+		# players_animated_sprite.animation = 'walk'
 		players_animated_sprite.flip_v = false
-		players_animated_sprite.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		players_animated_sprite.animation = 'up'
-		players_animated_sprite.flip_v = velocity.y > 0
-
+		players_animated_sprite.flip_h = velocity.x >= 0
 
 func _on_body_entered(body):
 	pass # Replace with function body.
